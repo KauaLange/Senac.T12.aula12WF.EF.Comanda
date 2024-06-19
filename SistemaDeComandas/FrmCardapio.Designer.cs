@@ -223,7 +223,6 @@
             btnExcluir.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             btnExcluir.Timer_Effect_1 = 5;
             btnExcluir.Timer_RGB = 300;
-            btnExcluir.Click += this.cyberButton2_Click;
             // 
             // btnEditar
             // 
@@ -264,7 +263,6 @@
             btnEditar.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             btnEditar.Timer_Effect_1 = 5;
             btnEditar.Timer_RGB = 300;
-            btnEditar.Click += this.cyberButton3_Click;
             // 
             // btnVoltar
             // 

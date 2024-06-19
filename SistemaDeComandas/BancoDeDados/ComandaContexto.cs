@@ -40,11 +40,18 @@ namespace SistemaDeComandas.BancoDeDados
                 .WithMany()
                 .HasForeignKey(ci => ci.CardapioItemId);
 
+            modelBuilder.Entity<ComandaItem>()
+                .HasOne(ci => ci.Comanda)
+                .WithMany(ci => ci.ComandaItems)
+                .HasForeignKey(f => f.Comandaid);
+
+
             // Pedido cozinha com pedido cozinha item
-            modelBuilder.Entity<PedidoCozinha>()
-                .HasMany<PedidoCozinhaItem>()
-                .WithOne(pci => pci.PedidoCozinha)
-                .HasForeignKey(pci => pci.PedidoCozinhaId);
+            modelBuilder.Entity<PedidoCozinhaItem>()
+               .HasOne(pci => pci.PedidoCozinha)
+               .WithMany(pci => pci.PedidoCozinhaItems)
+               .HasForeignKey(pci => pci.PedidoCozinhaId);
+
 
             modelBuilder.Entity<PedidoCozinhaItem>()
                 .HasOne(pci => pci.ComandaItem)
