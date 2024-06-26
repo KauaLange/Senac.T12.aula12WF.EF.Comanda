@@ -10,6 +10,25 @@ namespace SistemaDeComandas
         {
             InitializeComponent();
             CriarBancoDeDados();
+            CriarUsuarioAdmin();
+        }
+
+        private void CriarUsuarioAdmin()
+        {
+            // acessa o banco de dados
+            using (var banco = new ComandaContexto())
+            {   
+                //cria um novo usuario
+                var novoUsuario = new Usuario();
+                novoUsuario.Nome = "Admin";
+                novoUsuario.Email = "admin@comanda.com";
+                novoUsuario.Senha = "123";
+                // banco, adicione na coleção Usuarios, um novo usuario
+                banco.Usuarios.Add(novoUsuario);
+
+                // confirma a adição
+                banco.SaveChanges();
+            }
         }
 
         void CriarBancoDeDados()

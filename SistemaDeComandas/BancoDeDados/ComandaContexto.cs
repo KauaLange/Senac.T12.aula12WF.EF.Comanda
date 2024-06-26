@@ -13,7 +13,9 @@ namespace SistemaDeComandas.BancoDeDados
         public DbSet<ComandaItem> ComandaItems { get; set; }
         public DbSet<PedidoCozinha> PedidoCozinhas { get; set; }
         public DbSet<PedidoCozinhaItem> PedidoCozinhaItems { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }    
 
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("DataSource=comandas.db");
@@ -43,7 +45,7 @@ namespace SistemaDeComandas.BancoDeDados
             modelBuilder.Entity<ComandaItem>()
                 .HasOne(ci => ci.Comanda)
                 .WithMany(ci => ci.ComandaItems)
-                .HasForeignKey(f => f.Comandaid);
+                .HasForeignKey(f => f.ComandaId);
 
 
             // Pedido cozinha com pedido cozinha item
