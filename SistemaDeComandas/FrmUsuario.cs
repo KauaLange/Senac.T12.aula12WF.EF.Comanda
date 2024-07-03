@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SistemaDeComandas.BancoDeDados;
+using SistemaDeComandas.Modelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,75 @@ namespace SistemaDeComandas
         public FrmUsuario()
         {
             InitializeComponent();
+        }
+
+        private void cyberTextBox6_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cyberTextBox4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalvar_Load(object sender, EventArgs e)
+        {
+            CriarUsuario();
+            //AtualizarUsuario();
+        }
+
+        private void AtualizarUsuario()
+        {
+        }
+
+        private void CriarUsuario()
+        {
+            if(txtNome.Text == string.Empty)
+            {
+                MessageBox.Show("Preencha seu nome");
+                return;
+            }
+
+            if (txtEmail.Text == string.Empty)
+            {
+                MessageBox.Show("Preencha seu email");
+                return;
+            }
+
+            if (txtSenha.Text == string.Empty)
+            {
+                MessageBox.Show("Preencha sua senha");
+                return;
+            }
+
+
+
+                using (var banco = new ComandaContexto()) 
+            {
+                //criar o objeto usuario
+                var novoUsuario = new Usuario();
+                novoUsuario.Nome = txtNome.Text;
+                novoUsuario.Email = txtEmail.Text;
+                novoUsuario.Senha = txtSenha.Text;  
+
+                //adiciona esse objeto no contexto do banco
+                banco.Usuarios.Add(novoUsuario);
+
+                //Salva as alterações (INSERT INTO Usuarios (Id, nome, email, values[]
+                banco.SaveChanges();
+
+            }
         }
     }
 }
