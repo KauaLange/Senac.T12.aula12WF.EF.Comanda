@@ -51,19 +51,19 @@ namespace SistemaDeComandas
 
         private void CriarUsuario()
         {
-            if(txtNome.Text == string.Empty)
+            if (txtNome.TextButton == string.Empty)
             {
                 MessageBox.Show("Preencha seu nome");
                 return;
             }
 
-            if (txtEmail.Text == string.Empty)
+            if (txtEmail.TextButton == string.Empty)
             {
                 MessageBox.Show("Preencha seu email");
                 return;
             }
 
-            if (txtSenha.Text == string.Empty)
+            if (txtSenha.TextButton == string.Empty)
             {
                 MessageBox.Show("Preencha sua senha");
                 return;
@@ -71,13 +71,13 @@ namespace SistemaDeComandas
 
 
 
-                using (var banco = new ComandaContexto()) 
+            using (var banco = new ComandaContexto())
             {
                 //criar o objeto usuario
                 var novoUsuario = new Usuario();
                 novoUsuario.Nome = txtNome.Text;
                 novoUsuario.Email = txtEmail.Text;
-                novoUsuario.Senha = txtSenha.Text;  
+                novoUsuario.Senha = txtSenha.Text;
 
                 //adiciona esse objeto no contexto do banco
                 banco.Usuarios.Add(novoUsuario);
@@ -86,6 +86,11 @@ namespace SistemaDeComandas
                 banco.SaveChanges();
 
             }
+        }
+
+        private void txtSenha_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
