@@ -14,25 +14,17 @@ namespace SistemaDeComandas
 {
     public partial class FrmUsuario : Form
     {
+        private bool ehNovoUsuario;
+
         public FrmUsuario()
         {
             InitializeComponent();
         }
 
-        private void cyberTextBox6_Load(object sender, EventArgs e)
-        {
 
-        }
 
-        private void cyberTextBox4_Load(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -47,6 +39,22 @@ namespace SistemaDeComandas
 
         private void AtualizarUsuario()
         {
+            using (var banco = new ComandaContexto())
+            {
+                //buscar o usuario pelo ID
+                var usuario = banco
+                    .Usuarios
+                        .First(usuario =>
+                            usuario.Id == 1);
+
+                usuario.Nome = txtNome.TextButton;
+                usuario.Email = txtEmail.TextButton;
+                usuario.Senha = txtSenha.TextButton;
+
+                banco.SaveChanges();
+            }
+            
+
         }
 
         private void CriarUsuario()
@@ -89,6 +97,35 @@ namespace SistemaDeComandas
         }
 
         private void txtSenha_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cyberButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (ehNovoUsuario)
+                CriarUsuario();
+            else
+                AtualizarUsuario();
+
+    
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            ehNovoUsuario = true;
+
+            txtNome.TextButton = string.Empty;
+            txtEmail.TextButton = string.Empty;
+            txtSenha.TextButton = string.Empty;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
         {
 
         }
